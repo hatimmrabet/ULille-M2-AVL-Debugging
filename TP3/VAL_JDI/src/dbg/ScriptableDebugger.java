@@ -9,6 +9,7 @@ import com.sun.jdi.event.*;
 import com.sun.jdi.request.BreakpointRequest;
 import com.sun.jdi.request.ClassPrepareRequest;
 import com.sun.jdi.request.StepRequest;
+import dbg.commands.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -52,8 +53,13 @@ public class ScriptableDebugger {
 
     public void startDebugger() throws VMDisconnectedException, InterruptedException, IOException, AbsentInformationException {
         EventSet eventSet = null;
+
+        CommandManager cmdManager = new CommandManager();
+        cmdManager.registerCommands();
+
         while ((eventSet = vm.eventQueue().remove()) != null) {
             for (Event event : eventSet) {
+                System.out.println(event.toString());
                 if(event instanceof VMDisconnectEvent)
                 {
                     System.out.println("Debuggee output===");
@@ -69,23 +75,20 @@ public class ScriptableDebugger {
                 if(event instanceof ClassPrepareEvent)
                 {
                     setBreakPoint(debugClass.getName(), 6);
+                    setBreakPoint(debugClass.getName(), 14);
                 }
                 if(event instanceof StepEvent)
                 {
-                    if(readInput().equals("cancel"))
-                    {
-                        StepRequest stepRequest = (StepRequest) ((StepEvent) event).request();
-                        stepRequest.disable();
-                    }
+                    String input = readInput("Enter command: ");
+                    cmdManager.execute(input, (LocatableEvent) event);
                 }
                 if(event instanceof BreakpointEvent)
                 {
-                    if(readInput().equals("step"))
+                    if(readInput("Active Step: ").equals("step"))
                     {
                         enableStepRequest((BreakpointEvent) event);
                     }
                 }
-                System.out.println(event.toString());
                 vm.resume();
             }
         }
@@ -115,12 +118,13 @@ public class ScriptableDebugger {
         classPrepareRequest.enable() ;
     }
 
-    public String readInput() throws IOException {
+    public String readInput(String msg) throws IOException {
         InputStreamReader reader = new InputStreamReader(System.in);
         char[] buf = new char[1024];
-        System.out.print("Enter command: ");
+        System.out.print(msg);
         reader.read(buf);
         return new String(buf).trim();
     }
+
 
 }
