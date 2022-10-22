@@ -18,5 +18,6 @@ public class StepOverCommand implements Command {
         stepRequest.virtualMachine().eventRequestManager()
                 .createStepRequest(stepEvent.thread(), StepRequest.STEP_LINE, StepRequest.STEP_OVER)
                 .enable();
+
     }
 }

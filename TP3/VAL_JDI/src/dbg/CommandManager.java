@@ -29,6 +29,11 @@ public class CommandManager {
         register("frame", new FrameCommand());
         register("temporaries", new TemporariesCommand());
         register("stack", new StackCommand());
+        register("receiver", new ReceiverCommand());
+        register("sender", new SenderCommand());
+        register("method", new MethodCommand());
+        register("arguments", new ArgumentsCommand());
+        register("breakpoints", new BreakpointsCommand());
     }
 
 }

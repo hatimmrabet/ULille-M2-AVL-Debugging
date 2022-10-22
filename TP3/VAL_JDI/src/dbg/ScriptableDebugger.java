@@ -84,9 +84,10 @@ public class ScriptableDebugger {
                 }
                 if(event instanceof BreakpointEvent)
                 {
-                    if(readInput("Active Step: ").equals("step"))
+                    String input = readInput("Dans un breakpoint: ");
+                    if(input.equals("step"))
                     {
-                        enableStepRequest((BreakpointEvent) event);
+                        enableStepRequest((LocatableEvent) event);
                     }
                 }
                 vm.resume();
