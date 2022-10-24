@@ -21,15 +21,9 @@ public class FrameCommand implements Command {
     @Override
     public void execute(VirtualMachine vm, LocatableEvent event, String[] args) {
         System.out.println("======> CommandFrame.execute()");
-        try {
-            StackFrame sf = getCurrentFrame(event);
-            this.setFrame(sf);
-            for(int i = 0; i < sf.visibleVariables().size(); i++) {
-                System.out.println(sf.visibleVariables().get(i).name() + " = " + sf.getValue(sf.visibleVariables().get(i)));
-            }
-        } catch (AbsentInformationException e) {
-            throw new RuntimeException(e);
-        }
+        StackFrame sf = getCurrentFrame(event);
+        this.setFrame(sf);
+        System.out.println(sf.location().method() + " " + sf.location());
         System.out.println("==============================");
     }
 
