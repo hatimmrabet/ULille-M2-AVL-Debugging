@@ -8,6 +8,8 @@ public class JDISimpleDebuggee {
         int x = 40;
         int power = 2;
         printPower(x, power);
+        TestReceiverClass c = new TestReceiverClass();
+        c.testReceiver(10, 20);
     }
 
     public static double power(int x, int power) {
@@ -19,4 +21,11 @@ public class JDISimpleDebuggee {
         double powerX = power(x, power);
         System.out.println(powerX);
     }
+
+    public int multiplication(int x, int y) {
+        int result = x * y;
+        return result;
+    }
+
+
 }
