@@ -89,13 +89,14 @@ public class ScriptableDebugger {
                     {
                         enableStepRequest((LocatableEvent) event);
                     }
+                    //cmdManager.execute(input, (LocatableEvent) event);
                 }
                 vm.resume();
             }
         }
     }
 
-    private void enableStepRequest(LocatableEvent event) {
+        private void enableStepRequest(LocatableEvent event) {
         StepRequest stepRequest = vm.eventRequestManager()
                 .createStepRequest(event.thread(), StepRequest.STEP_MIN, StepRequest.STEP_OVER);
         stepRequest.enable();

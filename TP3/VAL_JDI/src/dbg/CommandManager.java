@@ -17,9 +17,10 @@ public class CommandManager {
     public void execute(String name, LocatableEvent event) {
         Command command = commands.get(name);
         if(command == null) {
-            throw new CommandNotFoundException(name);
+            System.out.println("Command not found: " + name);
+        } else {
+            command.execute(event);
         }
-        command.execute(event);
     }
 
     public void registerCommands() {
