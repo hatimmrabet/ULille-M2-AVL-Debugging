@@ -80,7 +80,7 @@ public class ScriptableDebugger {
                 if(event instanceof StepEvent)
                 {
                     String input = readInput("Enter command: ");
-                    cmdManager.execute(input, vm, (LocatableEvent) event, input.split(" "));
+                    cmdManager.execute(input, vm, (LocatableEvent) event);
                 }
                 if(event instanceof BreakpointEvent)
                 {
@@ -98,7 +98,7 @@ public class ScriptableDebugger {
 
         private void enableStepRequest(LocatableEvent event) {
         StepRequest stepRequest = vm.eventRequestManager()
-                .createStepRequest(event.thread(), StepRequest.STEP_MIN, StepRequest.STEP_OVER);
+                .createStepRequest(event.thread(), StepRequest.STEP_MIN, StepRequest.STEP_INTO);
         stepRequest.enable();
     }
 

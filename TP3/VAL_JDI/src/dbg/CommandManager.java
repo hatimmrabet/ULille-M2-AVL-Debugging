@@ -5,6 +5,7 @@ import com.sun.jdi.event.*;
 import dbg.commands.*;
 import dbg.commands.exception.CommandNotFoundException;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class CommandManager {
@@ -15,12 +16,15 @@ public class CommandManager {
         commands.put(name, command);
     }
 
-    public void execute(String name, VirtualMachine vm, LocatableEvent event, String[] args) {
-        Command command = commands.get(name);
+    public void execute(String cmd, VirtualMachine vm, LocatableEvent event) {
+        String[] args = cmd.split(" ");
+        String commandName = args[0];
+
+        Command command = commands.get(commandName);
         if(command == null) {
-            System.out.println("Command not found: " + name);
+            System.out.println("Command not found: " + commandName);
         } else {
-            command.execute(vm, event, args);
+            command.execute(vm, event, Arrays.copyOfRange(args,1, args.length));
         }
     }
 
@@ -36,6 +40,7 @@ public class CommandManager {
         register("method", new MethodCommand());
         register("arguments", new ArgumentsCommand());
         register("breakpoints", new BreakpointsCommand());
+        register("print-var", new PrintVarCommand());
     }
 
 }

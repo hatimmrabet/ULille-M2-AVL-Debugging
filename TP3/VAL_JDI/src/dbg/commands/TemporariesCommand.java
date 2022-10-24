@@ -10,15 +10,11 @@ public class TemporariesCommand implements Command {
         try {
             StackFrame sf = frameCommand.getCurrentFrame(event);
             for(LocalVariable lv : sf.visibleVariables()) {
-                if(lv.isArgument())
-                {
-                    System.out.println(lv.name() + " = " + sf.getValue(lv));
-                }
+                System.out.println(lv.name() + " = " + sf.getValue(lv));
             }
         } catch (AbsentInformationException e) {
             throw new RuntimeException(e);
         }
-
         System.out.println("==============================");
     }
 }

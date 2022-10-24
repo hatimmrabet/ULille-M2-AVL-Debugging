@@ -8,12 +8,13 @@ import com.sun.jdi.request.StepRequest;
 public class StepCommand implements Command {
     public void execute(VirtualMachine vm, LocatableEvent event, String[] args) {
         System.out.println("CommandStep.execute()");
+
         StepEvent stepEvent = (StepEvent) event;
         StepRequest stepRequest = (StepRequest) stepEvent.request();
         if(stepRequest.isEnabled()) {
             stepRequest.disable();
         }
-        stepRequest.virtualMachine().eventRequestManager()
+        vm.eventRequestManager()
                 .createStepRequest(stepEvent.thread(), StepRequest.STEP_MIN, StepRequest.STEP_INTO)
                 .enable();
     }
