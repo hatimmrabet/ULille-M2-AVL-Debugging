@@ -80,7 +80,7 @@ public class ScriptableDebugger {
                 if(event instanceof StepEvent)
                 {
                     String input = readInput("Enter command: ");
-                    cmdManager.execute(input, (LocatableEvent) event);
+                    cmdManager.execute(input, vm, (LocatableEvent) event, input.split(" "));
                 }
                 if(event instanceof BreakpointEvent)
                 {

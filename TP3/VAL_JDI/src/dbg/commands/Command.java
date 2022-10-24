@@ -5,5 +5,5 @@ import com.sun.jdi.event.Event;
 import com.sun.jdi.event.LocatableEvent;
 
 public interface Command {
-    void execute(LocatableEvent event);
+    void execute(VirtualMachine vm,LocatableEvent event, String[] args);
 }

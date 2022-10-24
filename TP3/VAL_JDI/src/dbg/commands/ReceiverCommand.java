@@ -2,12 +2,13 @@ package dbg.commands;
 
 import com.sun.jdi.IncompatibleThreadStateException;
 import com.sun.jdi.ObjectReference;
+import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.LocatableEvent;
 
 public class ReceiverCommand implements Command {
 
     @Override
-    public void execute(LocatableEvent event) {
+    public void execute(VirtualMachine vm, LocatableEvent event, String[] args) {
         System.out.println("ReceiverCommand.execute()");
         ObjectReference thisObject = getReceiver(event);
         System.out.println("Receiver: " + thisObject);

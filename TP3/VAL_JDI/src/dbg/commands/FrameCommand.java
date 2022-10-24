@@ -3,6 +3,7 @@ package dbg.commands;
 import com.sun.jdi.AbsentInformationException;
 import com.sun.jdi.IncompatibleThreadStateException;
 import com.sun.jdi.StackFrame;
+import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.LocatableEvent;
 
 public class FrameCommand implements Command {
@@ -18,7 +19,7 @@ public class FrameCommand implements Command {
     }
 
     @Override
-    public void execute(LocatableEvent event) {
+    public void execute(VirtualMachine vm, LocatableEvent event, String[] args) {
         System.out.println("======> CommandFrame.execute()");
         try {
             StackFrame sf = getCurrentFrame(event);

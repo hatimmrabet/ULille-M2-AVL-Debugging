@@ -1,13 +1,10 @@
 package dbg.commands;
 
-import com.sun.jdi.AbsentInformationException;
-import com.sun.jdi.IncompatibleThreadStateException;
-import com.sun.jdi.LocalVariable;
-import com.sun.jdi.StackFrame;
+import com.sun.jdi.*;
 import com.sun.jdi.event.LocatableEvent;
 
 public class TemporariesCommand implements Command {
-    public void execute(LocatableEvent event) {
+    public void execute(VirtualMachine vm, LocatableEvent event, String[] args) {
         System.out.println("======> CommandTemporaries.execute()");
         FrameCommand frameCommand = new FrameCommand();
         try {

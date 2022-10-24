@@ -1,5 +1,6 @@
 package dbg;
 
+import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.*;
 import dbg.commands.*;
 import dbg.commands.exception.CommandNotFoundException;
@@ -14,12 +15,12 @@ public class CommandManager {
         commands.put(name, command);
     }
 
-    public void execute(String name, LocatableEvent event) {
+    public void execute(String name, VirtualMachine vm, LocatableEvent event, String[] args) {
         Command command = commands.get(name);
         if(command == null) {
             System.out.println("Command not found: " + name);
         } else {
-            command.execute(event);
+            command.execute(vm, event, args);
         }
     }
 

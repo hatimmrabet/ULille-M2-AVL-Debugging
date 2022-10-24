@@ -1,5 +1,6 @@
 package dbg.commands;
 
+import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.Event;
 import com.sun.jdi.event.LocatableEvent;
 import com.sun.jdi.event.StepEvent;
@@ -7,7 +8,7 @@ import com.sun.jdi.request.StepRequest;
 
 public class StepOverCommand implements Command {
 
-    public void execute(LocatableEvent event) {
+    public void execute(VirtualMachine vm, LocatableEvent event, String[] args) {
         System.out.println("CommandStepOver.execute()");
         // execute current line
         StepEvent stepEvent = (StepEvent) event;
