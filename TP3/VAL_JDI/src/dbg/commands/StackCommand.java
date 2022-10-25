@@ -19,7 +19,7 @@ public class StackCommand implements Command {
         System.out.println("==============================");
     }
 
-    public List<StackFrame> getStack(LocatableEvent event) {
+    public static List<StackFrame> getStack(LocatableEvent event) {
         try {
             return event.thread().frames();
         } catch (IncompatibleThreadStateException e) {
