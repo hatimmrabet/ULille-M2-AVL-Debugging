@@ -11,7 +11,8 @@ public class BreakpointsCommand implements Command {
         System.out.println("BreakpointsCommand.execute");
         for(BreakpointRequest breakpointRequest : event.virtualMachine().eventRequestManager().breakpointRequests())
         {
-            System.out.println("Breakpoint at " + breakpointRequest.location().declaringType().name() + ":" + breakpointRequest.location().lineNumber());
+            if(breakpointRequest.isEnabled())
+                System.out.println("Breakpoint at " + breakpointRequest.location().declaringType().name() + ":" + breakpointRequest.location().lineNumber());
         }
     }
 }
