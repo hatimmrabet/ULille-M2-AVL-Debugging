@@ -16,8 +16,7 @@ public class PrintVarCommand implements Command {
             System.out.println("No variable name specified");
         } else {
             String varName = args[0];
-            StackCommand stackCommand = new StackCommand();
-            List<StackFrame> sf = stackCommand.getStack(event);
+            List<StackFrame> sf = StackCommand.getStack(event);
             for(StackFrame f : sf) {
                 try {
                     List<LocalVariable> vars = f.visibleVariables().stream().filter(v -> v.name().equals(varName)).toList();

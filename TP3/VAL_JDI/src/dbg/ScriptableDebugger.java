@@ -9,7 +9,6 @@ import com.sun.jdi.event.*;
 import com.sun.jdi.request.BreakpointRequest;
 import com.sun.jdi.request.ClassPrepareRequest;
 import com.sun.jdi.request.StepRequest;
-import dbg.commands.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -97,7 +96,7 @@ public class ScriptableDebugger {
         }
     }
 
-        private void enableStepRequest(LocatableEvent event) {
+    private void enableStepRequest(LocatableEvent event) {
         StepRequest stepRequest = vm.eventRequestManager()
                 .createStepRequest(event.thread(), StepRequest.STEP_MIN, StepRequest.STEP_INTO);
         stepRequest.enable();

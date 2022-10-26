@@ -1,6 +1,5 @@
 package dbg.commands;
 
-import com.sun.jdi.AbsentInformationException;
 import com.sun.jdi.IncompatibleThreadStateException;
 import com.sun.jdi.StackFrame;
 import com.sun.jdi.VirtualMachine;

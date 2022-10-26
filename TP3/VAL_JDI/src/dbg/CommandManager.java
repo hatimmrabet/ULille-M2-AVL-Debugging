@@ -4,7 +4,6 @@ import com.sun.jdi.AbsentInformationException;
 import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.*;
 import dbg.commands.*;
-import dbg.commands.exception.CommandNotFoundException;
 
 import java.util.Arrays;
 import java.util.HashMap;
