@@ -5,11 +5,12 @@ public class JDISimpleDebuggee {
     public static void main(String[] args) {
         String description = "Simple power printer";
         System.out.println(description + " -- starting");
+        AClass aclass = new AClass();
+        aclass.getInfo();
         int x = 40;
         int power = 2;
         printPower(x, power);
-        TestReceiverClass c = new TestReceiverClass();
-        c.testReceiver(10, 20);
+
     }
 
     public static double power(int x, int power) {

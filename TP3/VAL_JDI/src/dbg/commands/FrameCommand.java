@@ -27,7 +27,7 @@ public class FrameCommand implements Command {
         System.out.println("==============================");
     }
 
-    public StackFrame getCurrentFrame(LocatableEvent event) {
+    public static StackFrame getCurrentFrame(LocatableEvent event) {
         try {
             return event.thread().frame(0);
         } catch (IncompatibleThreadStateException e) {
