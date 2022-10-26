@@ -1,11 +1,8 @@
 package dbg.commands;
 
 import com.sun.jdi.AbsentInformationException;
-import com.sun.jdi.Location;
-import com.sun.jdi.ReferenceType;
 import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.LocatableEvent;
-import com.sun.jdi.request.BreakpointRequest;
 
 public class BreakOnCountCommand implements Command {
 
