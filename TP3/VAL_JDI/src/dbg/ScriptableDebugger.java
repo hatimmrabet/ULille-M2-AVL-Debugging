@@ -8,7 +8,6 @@ import com.sun.jdi.connect.VMStartException;
 import com.sun.jdi.event.*;
 import com.sun.jdi.request.BreakpointRequest;
 import com.sun.jdi.request.ClassPrepareRequest;
-import com.sun.jdi.request.StepRequest;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -35,9 +34,7 @@ public class ScriptableDebugger {
             enableClassPrepareRequest(vm);
             startDebugger();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (IllegalConnectorArgumentsException e) {
+        } catch (IOException | IllegalConnectorArgumentsException e) {
             e.printStackTrace();
         } catch (VMStartException e) {
             e.printStackTrace();
@@ -75,7 +72,6 @@ public class ScriptableDebugger {
                 {
                     setBreakPoint(debugClass.getName(), 6);
                     //setBreakPoint(debugClass.getName(), 9);
-
                 }
                 if(event instanceof StepEvent || event instanceof BreakpointEvent)
                 {

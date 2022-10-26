@@ -16,22 +16,29 @@ public class BreakCommand implements Command{
         {
             String className = args[0];
             int lineNumber = Integer.parseInt(args[1]);
-            for(ReferenceType targetClass : vm.allClasses())
-            {
-                if(targetClass.name().equals(className))
-                {
-                    Location location = targetClass.locationsOfLine(lineNumber).get(0);
-                    BreakpointRequest bqReq = vm.eventRequestManager().createBreakpointRequest(location);
-                    bqReq.enable();
-                    System.out.println("Breakpoint set at " + className + ":" + lineNumber);
-                    return;
-                }
-            }
-            System.out.println("Class not found: " + className);
+            setBreakpoint(vm, className, lineNumber, 0);
         }
         else
         {
             System.out.println("Break take 2 params, usage: break <package>.<class> <line>");
         }
+    }
+
+    public static void setBreakpoint(VirtualMachine vm, String className, int lineNumber, int count) throws AbsentInformationException
+    {
+        for(ReferenceType targetClass : vm.allClasses())
+        {
+            if(targetClass.name().equals(className))
+            {
+                Location location = targetClass.locationsOfLine(lineNumber).get(0);
+                BreakpointRequest bqReq = vm.eventRequestManager().createBreakpointRequest(location);
+                if(count > 0)
+                    bqReq.addCountFilter(count);
+                bqReq.enable();
+                System.out.println("Breakpoint set at " + className + ":" + lineNumber);
+                return;
+            }
+        }
+        System.out.println("Class not found: " + className);
     }
 }
