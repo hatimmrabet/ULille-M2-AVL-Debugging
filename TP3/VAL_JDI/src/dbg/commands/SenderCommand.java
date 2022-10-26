@@ -14,13 +14,13 @@ public class SenderCommand implements Command {
         System.out.println("Sender: " + sender);
     }
 
-    public static ClassObjectReference getSender(LocatableEvent event) {
+    public static ObjectReference getSender(LocatableEvent event) {
         List<StackFrame> stacks = StackCommand.getStack(event);
         if (stacks.size() > 1) {
             StackFrame caller = stacks.get(1);
             return caller.location().declaringType().classObject();
         } else {
-            return null;
+            return stacks.get(0).location().declaringType().classObject();
         }
     }
 

@@ -14,7 +14,7 @@ public class ReceiverCommand implements Command {
         System.out.println("Receiver: " + thisObject);
     }
 
-    public ObjectReference getReceiver(LocatableEvent event) {
+    public static ObjectReference getReceiver(LocatableEvent event) {
         try {
             return event.thread().frame(0).thisObject();
         } catch (IncompatibleThreadStateException e) {
