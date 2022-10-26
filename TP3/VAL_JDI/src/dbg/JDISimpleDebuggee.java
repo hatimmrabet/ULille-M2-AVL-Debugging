@@ -10,7 +10,7 @@ public class JDISimpleDebuggee {
         int x = 40;
         int power = 2;
         printPower(x, power);
-
+        loop();
     }
 
     public static double power(int x, int power) {
@@ -21,6 +21,13 @@ public class JDISimpleDebuggee {
     public static void printPower(int x, int power) {
         double powerX = power(x, power);
         System.out.println(powerX);
+    }
+
+    public static void loop() {
+        for(int i = 0; i < 5; i++) {
+            int ledouble = i * 2;
+            System.out.println(ledouble);
+        }
     }
 
     public int multiplication(int x, int y) {

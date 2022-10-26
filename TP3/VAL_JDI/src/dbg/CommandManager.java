@@ -1,5 +1,6 @@
 package dbg;
 
+import com.sun.jdi.AbsentInformationException;
 import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.*;
 import dbg.commands.*;
@@ -16,7 +17,7 @@ public class CommandManager {
         commands.put(name, command);
     }
 
-    public void execute(String cmd, VirtualMachine vm, LocatableEvent event) {
+    public void execute(String cmd, VirtualMachine vm, LocatableEvent event) throws AbsentInformationException {
         String[] args = cmd.split(" ");
         String commandName = args[0];
 
@@ -41,6 +42,7 @@ public class CommandManager {
         register("arguments", new ArgumentsCommand());
         register("breakpoints", new BreakpointsCommand());
         register("print-var", new PrintVarCommand());
+        register("break", new BreakCommand());
     }
 
 }

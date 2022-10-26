@@ -74,8 +74,8 @@ public class ScriptableDebugger {
                 }
                 if(event instanceof ClassPrepareEvent)
                 {
-                    //setBreakPoint(debugClass.getName(), 6);
-                    setBreakPoint(debugClass.getName(), 9);
+                    setBreakPoint(debugClass.getName(), 6);
+                    //setBreakPoint(debugClass.getName(), 9);
                 }
                 if(event instanceof StepEvent)
                 {
@@ -85,11 +85,11 @@ public class ScriptableDebugger {
                 if(event instanceof BreakpointEvent)
                 {
                     String input = readInput("Dans un breakpoint: ");
-                    if(input.equals("step"))
+                    cmdManager.execute(input, vm, (LocatableEvent) event);
+                    /*if(input.equals("step"))
                     {
                         enableStepRequest((LocatableEvent) event);
-                    }
-                    //cmdManager.execute(input, (LocatableEvent) event);
+                    */
                 }
                 vm.resume();
             }
