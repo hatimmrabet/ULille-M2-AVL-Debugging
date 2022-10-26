@@ -1,2 +1,6 @@
 # vscode files
 .vscode
+
+# files to ignore
+.idea
+out
