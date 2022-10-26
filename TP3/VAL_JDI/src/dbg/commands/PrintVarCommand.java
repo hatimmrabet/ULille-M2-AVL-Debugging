@@ -16,22 +16,20 @@ public class PrintVarCommand implements Command {
             System.out.println("No variable name specified");
         } else {
             String varName = args[0];
-            StackCommand stackCommand = new StackCommand();
-            List<StackFrame> sf = stackCommand.getStack(event);
+            List<StackFrame> sf = StackCommand.getStack(event);
             for(StackFrame f : sf) {
                 try {
                     List<LocalVariable> vars = f.visibleVariables().stream().filter(v -> v.name().equals(varName)).toList();
                     if(vars.size() > 0) {
                         LocalVariable var = vars.get(0);
                         System.out.println(var.name() + " = " + f.getValue(var));
-                    } else {
-                        System.out.println("Variable not found: " + varName);
+                        return;
                     }
                 } catch (AbsentInformationException e) {
                     throw new RuntimeException(e);
                 }
             }
-
+            System.out.println("Variable not found: " + varName);
         }
     }
 }

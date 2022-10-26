@@ -4,7 +4,6 @@ import com.sun.jdi.*;
 import com.sun.jdi.event.LocatableEvent;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class ArgumentsCommand implements Command {
 

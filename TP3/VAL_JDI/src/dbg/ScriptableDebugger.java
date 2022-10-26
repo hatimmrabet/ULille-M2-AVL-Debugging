@@ -9,7 +9,6 @@ import com.sun.jdi.event.*;
 import com.sun.jdi.request.BreakpointRequest;
 import com.sun.jdi.request.ClassPrepareRequest;
 import com.sun.jdi.request.StepRequest;
-import dbg.commands.*;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -78,29 +77,19 @@ public class ScriptableDebugger {
                     setBreakPoint(debugClass.getName(), 9);
 
                 }
-                if(event instanceof StepEvent)
+                if(event instanceof StepEvent || event instanceof BreakpointEvent)
                 {
                     String input = readInput("Enter command: ");
-                    cmdManager.execute(input, vm, (LocatableEvent) event);
-                }
-                if(event instanceof BreakpointEvent)
-                {
-                    String input = readInput("Dans un breakpoint: ");
-                    cmdManager.execute(input, vm, (LocatableEvent) event);
-                    /*if(input.equals("step"))
+                    while(!input.equals("step") && !input.equals("step-over") && !input.equals("continue"))
                     {
-                        enableStepRequest((LocatableEvent) event);
-                    */
+                        cmdManager.execute(input, vm, (LocatableEvent) event);
+                        input = readInput("-Enter command: ");
+                    }
+                    cmdManager.execute(input, vm, (LocatableEvent) event);
                 }
                 vm.resume();
             }
         }
-    }
-
-        private void enableStepRequest(LocatableEvent event) {
-        StepRequest stepRequest = vm.eventRequestManager()
-                .createStepRequest(event.thread(), StepRequest.STEP_MIN, StepRequest.STEP_INTO);
-        stepRequest.enable();
     }
 
     private void setBreakPoint(String className, int lineNumber) throws AbsentInformationException {

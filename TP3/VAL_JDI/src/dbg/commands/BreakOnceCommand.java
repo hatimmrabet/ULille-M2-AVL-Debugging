@@ -7,7 +7,6 @@ import com.sun.jdi.event.LocatableEvent;
 import com.sun.jdi.request.BreakpointRequest;
 import com.sun.jdi.request.EventRequest;
 
-import java.lang.reflect.Method;
 
 public class BreakOnceCommand implements Command {
 

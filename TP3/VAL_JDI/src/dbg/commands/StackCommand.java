@@ -6,7 +6,6 @@ import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.LocatableEvent;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class StackCommand implements Command {
 
