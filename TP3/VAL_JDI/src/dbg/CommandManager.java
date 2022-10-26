@@ -44,7 +44,7 @@ public class CommandManager {
         register("print-var", new PrintVarCommand());
         register("break", new BreakCommand());
         register("break-before-method-call", new BreakBeforeMethodCallCommand());
-
+        register("receiver-variables", new ReceiverVariablesCommand());
         register("break-once", new BreakOnceCommand());
         register("break-on-count", new BreakOnCountCommand());    }
 

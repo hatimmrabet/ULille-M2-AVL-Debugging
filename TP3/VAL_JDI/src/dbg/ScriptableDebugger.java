@@ -75,7 +75,7 @@ public class ScriptableDebugger {
                 if(event instanceof ClassPrepareEvent)
                 {
                     setBreakPoint(debugClass.getName(), 6);
-                    //setBreakPoint(debugClass.getName(), 9);
+                    setBreakPoint(debugClass.getName(), 9);
 
                 }
                 if(event instanceof StepEvent)
