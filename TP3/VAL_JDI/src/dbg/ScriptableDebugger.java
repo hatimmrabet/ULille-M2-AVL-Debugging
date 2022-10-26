@@ -86,10 +86,6 @@ public class ScriptableDebugger {
                 {
                     String input = readInput("Dans un breakpoint: ");
                     cmdManager.execute(input, vm, (LocatableEvent) event);
-                    /*if(input.equals("step"))
-                    {
-                        enableStepRequest((LocatableEvent) event);
-                    */
                 }
                 vm.resume();
             }
