@@ -24,7 +24,7 @@ public class JDISimpleDebuggee {
     }
 
     public static void loop() {
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 3; i++) {
             int ledouble = i * 2;
             System.out.println(ledouble);
         }

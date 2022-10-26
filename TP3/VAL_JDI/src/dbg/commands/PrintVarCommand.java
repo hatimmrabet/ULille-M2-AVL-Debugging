@@ -24,14 +24,13 @@ public class PrintVarCommand implements Command {
                     if(vars.size() > 0) {
                         LocalVariable var = vars.get(0);
                         System.out.println(var.name() + " = " + f.getValue(var));
-                    } else {
-                        System.out.println("Variable not found: " + varName);
+                        return;
                     }
                 } catch (AbsentInformationException e) {
                     throw new RuntimeException(e);
                 }
             }
-
+            System.out.println("Variable not found: " + varName);
         }
     }
 }
