@@ -4,6 +4,7 @@ import com.sun.jdi.AbsentInformationException;
 import com.sun.jdi.VirtualMachine;
 import com.sun.jdi.event.*;
 import dbg.commands.*;
+import dbg.commands.exception.CommandNotFoundException;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ public class CommandManager {
         register("print-var", new PrintVarCommand());
         register("break", new BreakCommand());
         register("break-before-method-call", new BreakBeforeMethodCallCommand());
+        register("receiver-variables", new ReceiverVariablesCommand());
         register("break-once", new BreakOnceCommand());
         register("break-on-count", new BreakOnCountCommand());    }
 
