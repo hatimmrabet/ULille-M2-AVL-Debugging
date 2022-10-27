@@ -10,8 +10,12 @@ public class ArgumentsCommand implements Command {
     public void execute(VirtualMachine vm,LocatableEvent event, String[] args) {
         System.out.println("CommandArguments.execute()");
         HashMap<LocalVariable, Value> arguments = getArguments(event);
-        for (LocalVariable arg : arguments.keySet()) {
-            System.out.println("Arguments: "+arg.name() + " = " + arguments.get(arg));
+        if (arguments.size() == 0) {
+            System.out.println("No arguments");
+        } else {
+            for (LocalVariable arg : arguments.keySet()) {
+                System.out.println("Arguments: "+arg.name() + " = " + arguments.get(arg));
+            }
         }
     }
 
